@@ -12,6 +12,6 @@ export const CreateDonationController = async (req: Request, res: Response) => {
 
 export const ListDonationsController = async (req: Request, res: Response) => {
     const donations = await ListDonationsService()
-    res.status(201).json(donations)
+    res.status(200).json(donations)
 
 }
