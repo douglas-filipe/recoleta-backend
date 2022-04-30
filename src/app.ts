@@ -6,9 +6,6 @@ const app = express()
 
 app.use(express.json())
 
-app.use(userRoute)
-app.use(donationRoute)
-
 app.use(
     cors({
         origin: ["*", "http://localhost:3000"],
@@ -16,6 +13,10 @@ app.use(
         credentials: true,
     })
 )
+
+app.use(userRoute)
+app.use(donationRoute)
+
 
 app.get("/", (__, res) => {
     res.send("Hello World");
