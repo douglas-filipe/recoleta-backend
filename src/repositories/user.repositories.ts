@@ -15,17 +15,19 @@ export const create = (body: ICreateUser) => {
 
 
 export const getByEmail = async (email: string) => {
-    const user = await prisma.user.findFirst({where: { email }, rejectOnNotFound: true});
+    const user = await prisma.user.findFirst({ where: { email }, rejectOnNotFound: true });
     return user;
 }
 
 export const getById = async (id: string) => {
-    const user = await prisma.user.findUnique({ where: { id }, select: { 
-        id: true,
-        name: true,
-        email: true,
-        createdAt: true,
-        updatedAt: true
-    } })
+    const user = await prisma.user.findUnique({
+        where: { id }, select: {
+            id: true,
+            name: true,
+            email: true,
+            createdAt: true,
+            updatedAt: true
+        }
+    })
     return user;
 }
