@@ -1,12 +1,12 @@
 import { NextFunction, Request, Response } from "express";
 import { SchemaOf } from "yup";
-import { ICreateUser } from "../@types/user.types";
+import { ICreateUser, ILogin } from "../@types/user.types";
 
 interface IerrorsYup {
     errors: [string];
 }
 
-export const validation = (schema: SchemaOf<ICreateUser>) =>
+export const validation = (schema: SchemaOf<ICreateUser | ILogin>) =>
     async (req: Request, res: Response, next: NextFunction) => {
         const src = req.body
         try {
