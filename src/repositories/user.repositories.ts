@@ -12,3 +12,9 @@ export const create = (body: ICreateUser) => {
         }
     })
 }
+
+
+export const getByEmail = async (email: string) => {
+    const user = await prisma.user.findFirst({where: { email }, rejectOnNotFound: true});
+    return user;
+}
