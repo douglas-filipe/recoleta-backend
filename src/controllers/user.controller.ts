@@ -1,5 +1,5 @@
 import { Request, Response } from "express"
-import { CreateUserService, loginService } from "../services/user.service"
+import { CreateUserService, getUserById, loginService } from "../services/user.service"
 
 export const CreateUserController = async (req: Request, res: Response) => {
     try {
@@ -20,4 +20,14 @@ export const login = async (req: Request, res: Response) => {
         if ( e.name === 'NotFoundError') return res.status(404).json({error: "user not registred"})
         return res.status(400).json({message: e})
     }
+}
+
+
+export const getUserByIdController = async ( req: Request, res: Response) => {
+    const { id } = req.params
+    const user = await getUserById(id);
+    if(user === null){
+        return res.status(404).json({error: "não econtrado"})
+    }
+    return res.json(user);
 }

@@ -1,5 +1,5 @@
 import { ICreateUser } from "../@types/user.types";
-import { create, getByEmail } from "../repositories/user.repositories";
+import { create, getByEmail, getById } from "../repositories/user.repositories";
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 
@@ -25,4 +25,10 @@ export const loginService = async (email: string, password: string) => {
     const token = jwt.sign({ id: userTarget?.id}, process.env.SECRET as string, {expiresIn: '15d'})
 
     return token
+}
+
+
+export const getUserById = async (id: string) => {
+    const user = await  getById(id);
+    return user;
 }
