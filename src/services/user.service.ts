@@ -17,18 +17,18 @@ export const CreateUserService = (body: ICreateUser) => {
 export const loginService = async (email: string, password: string) => {
     const userTarget = await getByEmail(email);
     const match = await bcrypt.compare(password, userTarget?.password as string);
-    
-    if(!match){
+
+    if (!match) {
         throw 'incorrect password'
     }
-    
-    const token = jwt.sign({ id: userTarget?.id}, process.env.SECRET as string, {expiresIn: '15d'})
+
+    const token = jwt.sign({ id: userTarget?.id }, process.env.SECRET as string, { expiresIn: '15d' })
 
     return token
 }
 
 
 export const getUserById = async (id: string) => {
-    const user = await  getById(id);
+    const user = await getById(id);
     return user;
 }
